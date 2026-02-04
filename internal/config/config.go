@@ -17,6 +17,7 @@ type Config struct {
 	DBPassword string
 	DBName     string
 	DBSSLMode  string
+	JWTSecret  string
 }
 
 var Cfg *Config
@@ -34,6 +35,7 @@ func Load() {
 		DBPassword: getEnv("DB_PASSWORD", "postgres"),
 		DBName:     getEnv("DB_NAME", "crunchyroll"),
 		DBSSLMode:  getEnv("DB_SSLMODE", "disable"),
+		JWTSecret:  getEnv("JWT_SECRET", "dev-secret"),
 	}
 
 	log.Println("✅ config loaded")

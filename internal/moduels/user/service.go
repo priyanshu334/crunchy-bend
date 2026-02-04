@@ -13,6 +13,6 @@ func NewService(repo Repository) Service {
 }
 
 func (s *service) GetByID(id uint) (*User, error) {
+
 	return s.repo.FindById(id)
 }
-

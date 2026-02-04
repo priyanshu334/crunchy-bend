@@ -23,4 +23,5 @@ func main() {
 	)
 
 	app.Listen(":" + config.Cfg.AppPort)
+
 }

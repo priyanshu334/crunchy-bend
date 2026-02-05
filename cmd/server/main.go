@@ -1,8 +1,11 @@
 package main
 
 import (
+	"log"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/priyanshu334/go-bend/internal/config"
+	"github.com/priyanshu334/go-bend/internal/db"
 	"github.com/priyanshu334/go-bend/internal/logger"
 	"github.com/priyanshu334/go-bend/internal/routes"
 	"go.uber.org/zap"
@@ -11,6 +14,12 @@ import (
 func main() {
 	config.Load()
 	logger.Init(config.Cfg.AppEnv)
+	if err := db.Connect(); err != nil {
+		log.Fatal("db connection failed", err)
+	}
+	if err := db.Migrate(); err != nil {
+		log.Fatal("migration failed", err)
+	}
 
 	app := fiber.New()
 
